@@ -12,25 +12,40 @@
   </head>
 
   <body>
-    <header class="header">
+    <header class="header row">
       <img
         src="./images/location.png"
         class="header__image"
         alt="an image of a map and location"
       />
-      <h1 class="header__title">GeoTagApp</h1>
+      <h1 class="header__title">
+        GeoTagApp<span class="material-icons"> location_on </span>
+      </h1>
       <nav class="header__navigation">
-        <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+        <a href="#">About<span class="material-icons"> info </span></a>
+        -
+        <a href="help">Help<span class="material-icons"> help </span></a>
+        -
+        <a href="/">Home<span class="material-icons"> home </span></a>
       </nav>
     </header>
 
-    <main class="main">
-      <section class="main__tagging tagging">
+    <main class="main row">
+      <section class="main__tagging tagging col-3">
         <h2>Tagging</h2>
 
         <!-- ############### VS1Lab 1a Form 1 Start -->
         <form id="tag-form" action="/tagging" method="post">
-          <!-- ... your code here ... -->
+          <p>Add a new GeoTag</p>
+        <div class="lattidude-component">
+          <p>Lattitude</p>
+          <input type="text">
+        </div>
+        <div class="longitude-component">
+          <p>Longitude</p>
+          <input type="text">
+        </div>
+       
         </form>
         <!-- ############### VS1Lab 1a Form 1 End -->
       </section>
@@ -49,7 +64,7 @@
         </form>
         <!-- ############### VS1Lab 1a Form 2 End -->
 
-        <div class="discovery__wrapper">
+        <div class="discovery__wrapper row">
           <div class="discovery__taglist">
             <ul class="discovery__results" id="discoveryResults">
               <li>Castle (49.01379, 8.404435) #sight</li>
@@ -70,7 +85,8 @@
     </main>
 
     <footer class="footer">
-      <span>(c) 2021/22 HKA_IWI_VSYS</span>
+      <span class="material-icons" style="font-size: 1.5em"> copyright </span
+      ><span>2021/22 HKA_IWI_VSYS</span>
     </footer>
   </body>
 </html>

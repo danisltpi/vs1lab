@@ -7,7 +7,8 @@
 */
 
 /* Global styling */
-
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 html {
   box-sizing: border-box;
 }
@@ -20,16 +21,39 @@ html {
   box-sizing: inherit;
 }
 
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
 
 /* Variables (example: see declaration for "a" below) */
 
 :root {
-  --link-color: #00B7FF;
+  --link-color: #00b7ff;
   --background-color: #efefef;
   --border-color: #cdcdcd;
   --gray-color: #666;
 }
-
 
 /* HTML element styles */
 
@@ -41,13 +65,72 @@ body {
 }
 
 a {
+  color: black;
+  display: flex;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0 0.5em 0 0.5em;
+  align-items: center;
+}
+a:hover {
   color: var(--link-color);
 }
-
 /* ### TODO ### Styles for other HTML elements */
+.header {
+  display: flex;
+  flex-direction: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0 1em 2em;
+  flex-wrap: wrap;
+  background-color: var(--background-color);
+  border-bottom: solid 2px;
+  border-color: var(--border-color);
+}
+.header__image {
+  width: 64px;
+  height: 64px;
+}
+.header__title {
+  display: flex;
+  align-items: center;
+  font-family: "Pacifico";
+  font-size: 3em;
+}
+.header__title:hover {
+  cursor: pointer;
+  color: green;
+}
+.header__title .material-icons {
+  font-size: 1em;
+}
+.header__navigation {
+  display: flex;
+  flex-direction: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2em;
+  color: grey;
+}
+.main {
+  display: flex;
+}
+.main__tagging {
+  border: solid 2px black;
+ text-align: center;
+}
+.main__discovery{
+  border: solid 2px red;
+}
 
-/* ... your code here ... */
-
+.footer {
+  display: flex;
+  background-color: var(--background-color);
+  border-top: solid 2px;
+  border-color: var(--border-color);
+  align-items: center;
+  justify-content: left;
+}
 
 /* Grid styles (no changes required) */
 
@@ -106,31 +189,23 @@ a {
   width: calc(100% - 1rem);
 }
 
-
 /* ### TODO ### Styles for Header Component */
-
-/* ... your code here ... */
-
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
 
-
 /* ### TODO ### Styles for Tagging component */
 
 /* ... your code here ... */
-
 
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
 
-
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
-
 
 /* ### TODO ### Media Queries */
 
