@@ -131,33 +131,42 @@ a:hover {
   border: solid 2px gray;
   border-radius: 10px;
   text-align: center;
-  padding-left: 2em;
+  padding: 1em;
 }
 
 .main__discovery {
-  display: flex ;
+  display: flex;
   flex-direction: column;
   border: solid 2px grey;
   padding: 1em;
   border-radius: 10px;
 }
 
-.discovery__wrapper{
+.discovery__wrapper {
   display: flex;
   flex-direction: column;
+  border: solid 2px gray;
+  border-radius: 10px;
+  padding: 2em;
 }
-.discovery__search{
-  border: 2px solid black;
-  padding-right: 40em;
+.discovery__search {
+  border: 2px solid gray;
+  padding: 1em 40em 0 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  max-width: 100%;
 }
-button{
+button {
   margin: 1em 0 1em 0;
-  width: 75%
+  width: 75%;
 }
 
 #tag-form {
   display: flex;
   flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 1em;
 }
 
 .customHeader {
