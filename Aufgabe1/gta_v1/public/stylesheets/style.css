@@ -114,13 +114,45 @@ a:hover {
 }
 .main {
   display: flex;
+  padding: 1rem;
 }
 .main__tagging {
-  border: solid 2px black;
- text-align: center;
+  border: solid 2px gray;
+  border-radius: 10px;
+  text-align: center;
+  padding-left: 2em;
 }
-.main__discovery{
+.main__discovery {
   border: solid 2px red;
+}
+.tag-form{
+  display: flex;
+  flex-direction: column;
+
+
+}
+.customHeader{
+  gap: 0.5em;
+  display: flex;
+  padding: 12px 0 6px 0;
+  font-size: 1.5em;
+  
+}
+.coord-input input{
+  display: flex;
+  width: 75%;
+  height: 42px;
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 4px;
+}
+.input-component input{
+
+  display: flex;
+width: 75%;
+height: 42px;
+border: 1px solid gray;
+border-radius: 4px;
 }
 
 .footer {
