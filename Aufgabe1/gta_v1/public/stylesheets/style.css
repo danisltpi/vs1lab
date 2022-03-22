@@ -135,10 +135,27 @@ a:hover {
 }
 
 .main__discovery {
-  border: solid 2px red;
+  display: flex ;
+  flex-direction: column;
+  border: solid 2px grey;
+  padding: 1em;
+  border-radius: 10px;
 }
 
-.tag-form {
+.discovery__wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.discovery__search{
+  border: 2px solid black;
+  padding-right: 40em;
+}
+button{
+  margin: 1em 0 1em 0;
+  width: 75%
+}
+
+#tag-form {
   display: flex;
   flex-direction: column;
 }
