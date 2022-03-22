@@ -71,11 +71,14 @@ a {
   font-size: 1.5rem;
   padding: 0 0.5em 0 0.5em;
   align-items: center;
+  gap: 0.3em;
 }
+
 a:hover {
   color: var(--link-color);
 }
 /* ### TODO ### Styles for other HTML elements */
+
 .header {
   display: flex;
   flex-direction: inline-flex;
@@ -87,23 +90,28 @@ a:hover {
   border-bottom: solid 2px;
   border-color: var(--border-color);
 }
+
 .header__image {
   width: 64px;
   height: 64px;
 }
+
 .header__title {
   display: flex;
   align-items: center;
   font-family: "Pacifico";
   font-size: 3em;
 }
+
 .header__title:hover {
   cursor: pointer;
   color: green;
 }
+
 .header__title .material-icons {
   font-size: 1em;
 }
+
 .header__navigation {
   display: flex;
   flex-direction: inline-flex;
@@ -111,48 +119,50 @@ a:hover {
   justify-content: space-between;
   font-size: 2em;
   color: grey;
+  gap: 0.3em;
 }
+
 .main {
   display: flex;
   padding: 1rem;
 }
+
 .main__tagging {
   border: solid 2px gray;
   border-radius: 10px;
   text-align: center;
   padding-left: 2em;
 }
+
 .main__discovery {
   border: solid 2px red;
 }
-.tag-form{
+
+.tag-form {
   display: flex;
   flex-direction: column;
-
-
 }
-.customHeader{
+
+.customHeader {
   gap: 0.5em;
   display: flex;
   padding: 12px 0 6px 0;
   font-size: 1.5em;
-  
 }
-.coord-input input{
+
+input {
   display: flex;
   width: 75%;
   height: 42px;
-  background-color: var(--background-color);
-  border: none;
   border-radius: 4px;
+  padding: 0.5em;
 }
-.input-component input{
-
-  display: flex;
-width: 75%;
-height: 42px;
-border: 1px solid gray;
-border-radius: 4px;
+.grey {
+  border: none;
+  background-color: var(--background-color);
+}
+.white {
+  border: 1px solid gray;
 }
 
 .footer {
