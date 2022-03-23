@@ -45,9 +45,17 @@ a {
 }
 
 /* ### TODO ### Styles for other HTML elements */
-
 /* ... your code here ... */
+header {
+  background-color: var(--background-color);
+  border-bottom: var(--border-color);
+  padding: 0px 40px;
+  align-items: center;
+}
 
+header img {
+  height: 50px;
+}
 
 /* Grid styles (no changes required) */
 
