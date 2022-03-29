@@ -124,6 +124,7 @@ a:hover {
 
 .main {
   display: flex;
+  flex-wrap: wrap;
   padding: 1rem;
 }
 
@@ -140,25 +141,32 @@ a:hover {
   border: solid 2px grey;
   padding: 1em;
   border-radius: 10px;
+  width: fit-content;
 }
 
 .discovery__wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border: solid 2px gray;
   border-radius: 10px;
   padding: 2em;
 }
 .discovery__search {
+  display: flex;
+  flex-direction: column;
   border: 2px solid gray;
-  padding: 1em 40em 0 1em;
+  padding: 1em;
   margin-bottom: 1em;
   border-radius: 10px;
   max-width: 100%;
+  width: auto;
 }
 button {
   margin: 1em 0 1em 0;
   width: 75%;
+
+  height: 42px;
+  border-radius: 4px;
 }
 
 #tag-form {
@@ -183,12 +191,23 @@ input {
   border-radius: 4px;
   padding: 0.5em;
 }
+
 .grey {
   border: none;
   background-color: var(--background-color);
 }
+
 .white {
   border: 1px solid gray;
+}
+
+.discovery__taglist {
+  margin-bottom: 1em;
+}
+
+#mapView {
+  margin: 1.5em;
+  width: 90%;
 }
 
 .footer {
@@ -198,6 +217,7 @@ input {
   border-color: var(--border-color);
   align-items: center;
   justify-content: left;
+  height: 4em;
 }
 
 /* Grid styles (no changes required) */
@@ -208,6 +228,13 @@ input {
   justify-content: space-between;
   flex: 1;
 }
+.link {
+  padding: 1em;
+  background-color: var(--background-color);
+  margin: 1em;
+  border-radius: 10px;
+}
+
 
 .col-1 {
   width: calc(8.33% - 1rem);
@@ -255,6 +282,48 @@ input {
 
 .col-12 {
   width: calc(100% - 1rem);
+}
+
+@media only screen and (max-width: 840px) {
+  section {
+    margin-bottom: 1em;
+    min-width: 50%;
+  }
+
+  .header__image {
+    display: none;
+  }
+
+  .main__discovery {
+    width: 100%;
+  }
+
+  .header__navigation {
+    width: 50%;
+    flex-wrap: wrap;
+    padding-right: 10%;
+  }
+
+  .header__navigation a {
+    font-size: 75%;
+  }
+
+  .main__tagging {
+    width: 100%;
+  }
+
+  .discovery__wrapper {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .discovery__taglist {
+    width: 100%;
+  }
+
+  #mapView {
+    width: 150%;
+  }
 }
 
 /* ### TODO ### Styles for Header Component */

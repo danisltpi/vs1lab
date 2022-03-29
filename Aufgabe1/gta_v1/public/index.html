@@ -34,8 +34,8 @@
       <section class="main__tagging tagging col-3">
         <!-- ############### VS1Lab 1a Form 1 Start -->
         <form id="tag-form" action="/tagging" method="post">
-          <h2 style="font-size: x-large; align-self: start;">Tagging</h2>
-          <p style="align-self: flex-start;">Add a new GeoTag</p>
+          <h2 style="font-size: x-large; align-self: start">Tagging</h2>
+          <p style="align-self: flex-start">Add a new GeoTag</p>
           <div class="coord-input">
             <p class="customHeader">
               <span class="material-icons"> east </span> Lattitude:
@@ -68,7 +68,7 @@
       <section class="main__discovery discovery col-9">
         <!-- ############### VS1Lab 1a Form 2 Start -->
         <form
-          class="discovery__search"
+          class="discovery__search row"
           id="discoveryFilterForm"
           action="/discovery"
           method="post"
@@ -85,21 +85,20 @@
         </form>
         <!-- ############### VS1Lab 1a Form 2 End -->
 
-        <div class="discovery__wrapper row">
-          <div class="discovery__taglist">
+        <div class="discovery__wrapper">
+          <div class="discovery__taglist col-3">
             <ul class="discovery__results" id="discoveryResults">
-              <li>Castle (49.01379, 8.404435) #sight</li>
-              <li>IWI (49.01379, 8.390071) #edu</li>
+              <li class="customHeader link">Castle (49.01379, 8.404435) #sight</li>
+              <li class="customHeader link">IWI (49.01379, 8.390071) #edu</li>
             </ul>
           </div>
 
-          <div class="discovery__map">
+          <div class="discovery__map col-7">
             <img
               src="./images/mapview.jpg"
               alt="a map with locations"
               id="mapView"
             />
-            <span>Result map</span>
           </div>
         </div>
       </section>
