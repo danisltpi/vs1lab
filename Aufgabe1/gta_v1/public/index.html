@@ -55,14 +55,14 @@
               />
             </div>
             <div class="coord-input">
-              <label for="latitude" class="customHeader">
+              <label for="Longitude" class="customHeader">
                 <span class="material-icons"> north </span> Longitude:
               </label>
               <input
                 type="text"
                 step="any"
                 name="Longitude"
-                id="Longidude"
+                id="Longitude"
                 min="0"
                 max="90"
                 value="8.390071"
@@ -106,6 +106,31 @@
 
       <section class="main__discovery discovery col-9">
         <!-- ############### VS1Lab 1a Form 2 Start -->
+        <div class="coord-input">
+          <input
+            type="hidden"
+            step="any"
+            name="Longitude"
+            id="LongitudeDisc"
+            min="0"
+            max="90"
+            value="8.390071"
+            readonly
+            class="input grey"
+          />
+        </div>
+        <div class="coord-input">
+          <input
+            type="hidden"
+            step="any"
+            name="Latitude"
+            id="LatitudeDisc"
+            min="0"
+            max="90"
+            value="8.390071"
+            readonly
+            class="input grey"
+          />
         <form
           class="discovery__search row"
           id="discoveryFilterForm"
@@ -144,31 +169,6 @@
               <li class="customHeader link">IWI (49.01379, 8.390071) #edu</li>
             </ul>
           </div>
-          <div class="coord-input">
-            <input
-              type="hidden"
-              step="any"
-              name="Longitude"
-              id="LongitudeDisc"
-              min="0"
-              max="90"
-              value="8.390071"
-              readonly
-              class="input grey"
-            />
-          </div>
-          <div class="coord-input">
-            <input
-              type="hidden"
-              step="any"
-              name="Latitude"
-              id="LatitudeDisc"
-              min="0"
-              max="90"
-              value="8.390071"
-              readonly
-              class="input grey"
-            />
           <div class="discovery__map col-7">
             <img
               src="./images/mapview.jpg"
