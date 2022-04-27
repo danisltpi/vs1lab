@@ -1,0 +1,349 @@
+/*
+  File origin: VS1LAB A1b  
+
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00b7ff;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+}
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: black;
+  display: flex;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0 0.5em 0 0.5em;
+  align-items: center;
+  gap: 0.3em;
+}
+
+a:hover {
+  color: var(--link-color);
+}
+/* ### TODO ### Styles for other HTML elements */
+
+.header {
+  display: flex;
+  flex-direction: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0 1em 2em;
+  flex-wrap: wrap;
+  background-color: var(--background-color);
+  border-bottom: solid 2px;
+  border-color: var(--border-color);
+}
+
+.header__image {
+  width: 64px;
+  height: 64px;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  font-family: "Pacifico";
+  font-size: 3em;
+}
+
+.header__title:hover {
+  cursor: pointer;
+  color: green;
+}
+
+.header__title .material-icons {
+  font-size: 1em;
+}
+
+.header__navigation {
+  display: flex;
+  flex-direction: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2em;
+  color: grey;
+  gap: 0.3em;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.main__tagging {
+  border: solid 2px gray;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1em;
+}
+
+.main__discovery {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px grey;
+  padding: 1em;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.discovery__wrapper {
+  display: flex;
+  flex-direction: row;
+  border: solid 2px gray;
+  border-radius: 10px;
+  padding: 2em;
+}
+.discovery__search {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  max-width: 100%;
+  width: auto;
+}
+button {
+  margin: 1em 0 1em 0;
+  width: 75%;
+
+  height: 42px;
+  border-radius: 4px;
+}
+
+#tag-form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.customHeader {
+  gap: 0.5em;
+  display: flex;
+  padding: 12px 0 6px 0;
+  font-size: 1.5em;
+}
+
+input {
+  display: flex;
+  width: 75%;
+  height: 42px;
+  border-radius: 4px;
+  padding: 0.5em;
+}
+
+.grey {
+  border: none;
+  background-color: var(--background-color);
+}
+
+.white {
+  border: 1px solid gray;
+}
+
+.discovery__taglist {
+  margin-bottom: 1em;
+}
+
+#mapView {
+  margin: 1.5em;
+  width: 90%;
+}
+
+.footer {
+  display: flex;
+  background-color: var(--background-color);
+  border-top: solid 2px;
+  border-color: var(--border-color);
+  align-items: center;
+  justify-content: left;
+  height: 4em;
+}
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.link {
+  padding: 1em;
+  background-color: var(--background-color);
+  margin: 1em;
+  border-radius: 10px;
+}
+
+
+.col-1 {
+  width: calc(8.33% - 1rem);
+}
+
+.col-2 {
+  width: calc(16.66% - 1rem);
+}
+
+.col-3 {
+  width: calc(25% - 1rem);
+}
+
+.col-4 {
+  width: calc(33.33% - 1rem);
+}
+
+.col-5 {
+  width: calc(41.66% - 1rem);
+}
+
+.col-6 {
+  width: calc(50% - 1rem);
+}
+
+.col-7 {
+  width: calc(58.33% - 1rem);
+}
+
+.col-8 {
+  width: calc(66.66% - 1rem);
+}
+
+.col-9 {
+  width: calc(75% - 1rem);
+}
+
+.col-10 {
+  width: calc(83.33% - 1rem);
+}
+
+.col-11 {
+  width: calc(91.66% - 1rem);
+}
+
+.col-12 {
+  width: calc(100% - 1rem);
+}
+
+@media only screen and (max-width: 840px) {
+  section {
+    margin-bottom: 1em;
+    min-width: 50%;
+  }
+
+  .header__image {
+    display: none;
+  }
+
+  .main__discovery {
+    width: 100%;
+  }
+
+  .header__navigation {
+    width: 50%;
+    flex-wrap: wrap;
+    padding-right: 10%;
+  }
+
+  .header__navigation a {
+    font-size: 75%;
+  }
+
+  .main__tagging {
+    width: 100%;
+  }
+
+  .discovery__wrapper {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .discovery__taglist {
+    width: 100%;
+  }
+
+  #mapView {
+    width: 150%;
+  }
+}
+
+/* ### TODO ### Styles for Header Component */
+
+/* ### TODO ### Styles for Main Component */
+
+/* ... your code here ... */
+
+/* ### TODO ### Styles for Tagging component */
+
+/* ... your code here ... */
+
+/* ### TODO ### Styles for Discovery component */
+
+/* ... your code here ... */
+
+/* ### TODO ### Styles for Footer Component */
+
+/* ... your code here ... */
+
+/* ### TODO ### Media Queries */
+
+/* ... your code here ... */
