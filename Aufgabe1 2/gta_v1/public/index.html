@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<!-- File origin: VS1LAB A1a -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoTagApp</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header class="header row">
+      <img
+        src="./images/location.png"
+        class="header__image"
+        alt="an image of a map and location"
+      />
+      <h1 class="header__title">
+        GeoTagApp<span class="material-icons"> location_on </span>
+      </h1>
+      <nav class="header__navigation">
+        <a href="#"><span class="material-icons"> info </span>About</a>
+        -
+        <a href="help"><span class="material-icons"> help </span>Help</a>
+        -
+        <a href="/"><span class="material-icons"> home </span>Home</a>
+      </nav>
+    </header>
+
+    <main class="main row">
+      <section class="main__tagging tagging col-3">
+        <!-- ############### VS1Lab 1a Form 1 Start -->
+        <form id="tag-form" action="/tagging" method="post">
+          <h2 style="font-size: x-large; align-self: start">Tagging</h2>
+          <fieldset>
+            <legend style="align-self: flex-start">Add a new GeoTag</legend>
+
+            <div class="coord-input">
+              <label for="latitude" class="customHeader">
+                <span class="material-icons"> east </span> Latitude:
+              </label>
+              <input
+                type="text"
+                step="any"
+                name="latitude"
+                id="latitude"
+                min="0"
+                max="90"
+                value="49.01379"
+                required
+                class="input grey"
+              />
+            </div>
+            <div class="coord-input">
+              <label for="latitude" class="customHeader">
+                <span class="material-icons"> north </span> Longitude:
+              </label>
+              <input
+                type="text"
+                step="any"
+                name="Longitude"
+                id="Longidude"
+                min="0"
+                max="90"
+                value="8.390071"
+                required
+                class="input grey"
+              />
+            </div>
+            <div class="input-component">
+              <label for="name" class="customHeader">
+                <span class="material-icons"> badge </span> Name:
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                maxlength="10"
+                placeholder="e.g. Central Berlin"
+                required
+                class="input white"
+              />
+            </div>
+            <div class="input-component">
+              <label class="customHeader">
+                <span class="material-icons"> tag </span>Hashtag:
+              </label>
+              <input
+                class="input white"
+                type="text"
+                name="hashtag"
+                id="hashtag"
+                placeholder="e.g. #be"
+                pattern="#[a-zA-Z]+"
+                maxlength="11"
+              />
+            </div>
+            <button type="submit">Add tag</button>
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 1 End -->
+      </section>
+
+      <section class="main__discovery discovery col-9">
+        <!-- ############### VS1Lab 1a Form 2 Start -->
+        <form
+          class="discovery__search row"
+          id="discoveryFilterForm"
+          action="/discovery"
+          method="post"
+        >
+          <h2 class="discovery__title" style="font-size: x-large">Discovery</h2>
+          <fieldset>
+            <legend>Search</legend>
+            <div class="input-component">
+              <p class="customHeader">
+                <span class="material-icons"> search </span>Search term or keywords:
+              </p>
+              <input
+                class="input white"
+                type="text"
+                name="search"
+                id="search"
+                placeholder="e.g. Berlin"
+                required
+              />
+            </div>
+            <button type="submit">Search</button>
+            <!-- ... your code here ... -->
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 2 End -->
+
+        <div class="discovery__wrapper">
+          <div class="discovery__taglist col-3">
+            <ul class="discovery__results" id="discoveryResults">
+              <li class="customHeader link">
+                Castle (49.01379, 8.404435) #sight
+              </li>
+              <li class="customHeader link">IWI (49.01379, 8.390071) #edu</li>
+            </ul>
+          </div>
+
+          <div class="discovery__map col-7">
+            <img
+              src="./images/mapview.jpg"
+              alt="a map with locations"
+              id="mapView"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="material-icons" style="font-size: 1.5em"> copyright </span
+      ><span>2021/22 HKA_IWI_VSYS</span>
+    </footer>
+  </body>
+</html>

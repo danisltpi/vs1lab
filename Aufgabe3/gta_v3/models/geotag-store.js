@@ -30,6 +30,12 @@ class InMemoryGeoTagStore {
     // TODO: ... your code here ...
     #geoTagArray = [];
 
+    constructor() {
+        GeoTagStore = new InMemoryGeoTagStore;
+        GeoTagStore.push(tagList());  
+    }
+
+
 
 
     addGeoTag(geoTag) {
