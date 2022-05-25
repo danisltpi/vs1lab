@@ -1,5 +1,5 @@
 // File origin: VS1LAB A3
-
+const TagList = require("./geotag-examples");
 const GeoTag = require("./geotag");
 
 /**
@@ -32,11 +32,8 @@ class InMemoryGeoTagStore {
 
     constructor() {
         GeoTagStore = new InMemoryGeoTagStore;
-        GeoTagStore.push(tagList());  
+        GeoTagStore.push(TagList.tagList());  
     }
-
-
-
 
     addGeoTag(geoTag) {
         this.#geoTagArray.push(geoTag)
