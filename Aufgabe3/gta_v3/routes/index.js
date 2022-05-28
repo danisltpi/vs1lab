@@ -45,7 +45,7 @@ const GeoTagExamples = require('../models/geotag-examples');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { taglist: [] });
 });
 
 /**
@@ -84,5 +84,8 @@ router.post('/tagging', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/discovery', (req, res) => {
+  res.send('hello');
+});
 
 module.exports = router;
