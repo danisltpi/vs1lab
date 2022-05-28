@@ -29,6 +29,7 @@ class InMemoryGeoTagStore {
 
     // TODO: ... your code here ...
     #geoTagArray = [];
+    proximity_radius = 0.1;
 
     addGeoTag(geoTag) {
         this.#geoTagArray.push(geoTag)
@@ -43,7 +44,32 @@ class InMemoryGeoTagStore {
         }
     }
 
-    getNearbyGeoTags(latitude, longitude, radius) {
+     getNearbyGeoTags(location) {
+        let ret = [];
+        this.#geoTagArray.forEach(function(tag){
+            let difflong = tag.longitude - location.longitude;
+            let difflat = tag.latitude - location.latitude;
+            let distance = Math.sqrt((difflong*difflong) + (difflat*difflat));
+            if (distance <= proximity_radius)
+                ret.push(tag);
+        });
+        return ret;
+    }
+
+    searchNearbyGeoTags(location) {
+        let ret = [];
+
+        let proximates = getNearbyGeoTags(location);
+        proximates.forEach(function(tag){
+            if (tag.name === location.name || tag.hashtag === location.hashtag){
+                ret.push(tag);
+            }
+        });
+        return ret;
+    }
+
+    // der code funzt net
+/*     getNearbyGeoTags(latitude, longitude, radius) {
         let returnArray = [];
 
         this.#geoTagArray.forEach((geoTag) => {
@@ -67,14 +93,14 @@ class InMemoryGeoTagStore {
                 this.addGeoTag(new GeoTag(tagList[i][0], tagList[i][1], tagList[i][2], tagList[i][3]));
             }
     }
-
-    haversineFormulaForDistanceBetweenPoints(lat1, long1, lat2, long2) {
+    
+/*     haversineFormulaForDistanceBetweenPoints(lat1, long1, lat2, long2) {
         const EarthRadius = 6371;
         let gLat = this.gradZuBogen(lat2 - lat1);
         let gLong = this.gradZuBogen(long2 - long1);
         let a =
-            Math.sin(gLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(gLat / 2) * Math.sin(gLat / 2) +
+            Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
             Math.sin(gLong / 2) * Math.sin(gLong / 2)
             ;
         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
@@ -84,8 +110,10 @@ class InMemoryGeoTagStore {
     gradZuBogen(grad) {
         return grad * (Math.PI / 180)
     }
-
-
+    deg2rad(degrees) {
+        let pi = Math.PI;
+        return degrees * (pi/180);
+    } */
 }
 
 module.exports = InMemoryGeoTagStore

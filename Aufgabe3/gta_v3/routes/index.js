@@ -75,6 +75,7 @@ router.post('/tagging', (req, res) => {
 
   let geoTag = new GeoTag(latitude, longitude, hashtag, name);
   let nearbyGeoTags = geoTagStore.searchNearbyGeoTags(latitude, latitude, 200);
+  console.log(nearbyGeoTags);
 
   //let nearbyGeoTags = GeoTagStore.searchNearbyGeoTags(latitude, latitude, 200);
 });
