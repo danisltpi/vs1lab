@@ -30,11 +30,6 @@ class InMemoryGeoTagStore {
     // TODO: ... your code here ...
     #geoTagArray = [];
 
-    constructor() {
-        GeoTagStore = new InMemoryGeoTagStore;
-        GeoTagStore.push(TagList.tagList());  
-    }
-
     addGeoTag(geoTag) {
         this.#geoTagArray.push(geoTag)
     }
@@ -66,13 +61,12 @@ class InMemoryGeoTagStore {
         })
     }
 
-
-
-
-
-
-
-
+    populateExamples() {
+        let tagList = GeoTagExamples.tagList;
+        for (let i = 0; i < (GeoTagExamples.tagList).length; i++) {
+                this.addGeoTag(new GeoTag(tagList[i][0], tagList[i][1], tagList[i][2], tagList[i][3]));
+            }
+    }
 
     haversineFormulaForDistanceBetweenPoints(lat1, long1, lat2, long2) {
         const EarthRadius = 6371;
