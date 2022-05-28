@@ -1,5 +1,5 @@
 // File origin: VS1LAB A3
-const TagList = require("./geotag-examples");
+const GeoTagExamples = require("./geotag-examples");
 const GeoTag = require("./geotag");
 
 /**
@@ -47,7 +47,7 @@ class InMemoryGeoTagStore {
         let returnArray = [];
 
         this.#geoTagArray.forEach((geoTag) => {
-            if (this.haversineFormulaForDistanceBetweenPoints(latitude.longitude, geoTag.latitude, geoTag.longitude) >= radius) {
+            if (this.haversineFormulaForDistanceBetweenPoints(geoTag.longitude, geoTag.latitude, geoTag.longitude) >= radius) {
                 returnArray.push(geoTag)
             }
         })
@@ -61,7 +61,7 @@ class InMemoryGeoTagStore {
         })
     }
 
-    populateExamples() {
+    addExamples() {
         let tagList = GeoTagExamples.tagList;
         for (let i = 0; i < (GeoTagExamples.tagList).length; i++) {
                 this.addGeoTag(new GeoTag(tagList[i][0], tagList[i][1], tagList[i][2], tagList[i][3]));
@@ -70,8 +70,8 @@ class InMemoryGeoTagStore {
 
     haversineFormulaForDistanceBetweenPoints(lat1, long1, lat2, long2) {
         const EarthRadius = 6371;
-        let gLat = gradZuBogen(lat2 - lat1);
-        let gLong = gradZuBogen(long2 - long1);
+        let gLat = this.gradZuBogen(lat2 - lat1);
+        let gLong = this.gradZuBogen(long2 - long1);
         let a =
             Math.sin(gLat / 2) * Math.sin(dLat / 2) +
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
