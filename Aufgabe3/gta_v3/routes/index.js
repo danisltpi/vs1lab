@@ -10,30 +10,31 @@
  * Define module dependencies.
  */
 
-const express = require('express');
-const app = require('../app')
+const express = require("express");
+const app = require("../app");
 const router = express.Router();
 
 /**
- * The module "geotag" exports a class GeoTagStore. 
+ * The module "geotag" exports a class GeoTagStore.
  * It represents geotags.
- * 
+ *
  * TODO: implement the module in the file "../models/geotag.js"
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTag = require('../models/geotag');
+const GeoTag = require("../models/geotag");
 
 /**
- * The module "geotag-store" exports a class GeoTagStore. 
+ * The module "geotag-store" exports a class GeoTagStore.
  * It provides an in-memory store for geotag objects.
- * 
+ *
  * TODO: implement the module in the file "../models/geotag-store.js"
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTagStore = require('../models/geotag-store');
+const GeoTagStore = require("../models/geotag-store");
 
-const GeoTagExamples = require('../models/geotag-examples');
+const GeoTagExamples = require("../models/geotag-examples");
 
+var globalGeoTagStore = new GeoTagStore();
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -45,9 +46,13 @@ const GeoTagExamples = require('../models/geotag-examples');
  */
 
 // TODO: extend the following route example if necessary
-router.get('/', (req, res) => {
-  res.render('index', { taglist: [], currentLatitude: null, currentLongitude: null });
-  console.log("omegalul")
+router.get("/", (req, res) => {
+  res.render("index", {
+    taglist: [],
+    currentLatitude: null,
+    currentLongitude: null,
+  });
+  console.log("omegalul");
 });
 
 /**
@@ -61,28 +66,32 @@ router.get('/', (req, res) => {
  *
  * As response, the ejs-template is rendered with geotag objects.
  * All result objects are located in the proximity of the new geotag.
- * To this end, "GeoTagStore" provides a method to search geotags 
+ * To this end, "GeoTagStore" provides a method to search geotags
  * by radius around a given location.
  */
 
 // TODO: ... your code here ...
-router.post('/tagging', (req, res) => {
-  let geoTagStore = new GeoTagStore();
+router.post("/tagging", (req, res) => {
+  console.log(req.body)
   let latitude = req.body.latitude;
-  let longitude = req.body.longitude;
+  let longitude = req.body.Longitude;
+ 
   let name = req.body.name;
   let hashtag = req.body.hashtag;
 
   let geoTag = new GeoTag(latitude, longitude, hashtag, name);
   console.log(geoTag);
-  let nearbyGeoTags = geoTagStore.getNearbyGeoTags(geoTag);
+  let nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(geoTag);
   nearbyGeoTags.push(geoTag);
-  geoTagStore.addGeoTag(geoTag);
+  globalGeoTagStore.addGeoTag(geoTag);
 
-  res.render("index", {taglist: nearbyGeoTags, currentLatitude: latitude, currentLongitude: longitude, mapTaglist: JSON.stringify(nearbyGeoTags)});
-  console.log(nearbyGeoTags);
-
-  //let nearbyGeoTags = GeoTagStore.searchNearbyGeoTags(latitude, latitude, 200);
+  res.render("index", {
+    taglist: nearbyGeoTags,
+    currentLatitude: latitude,
+    currentLongitude: longitude,
+    mapTaglist: JSON.stringify(nearbyGeoTags),
+  });
+  
 });
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -94,15 +103,17 @@ router.post('/tagging', (req, res) => {
  *
  * As response, the ejs-template is rendered with geotag objects.
  * All result objects are located in the proximity of the given coordinates.
- * If a search term is given, the results are further filtered to contain 
- * the term as a part of their names or hashtags. 
- * To this end, "GeoTagStore" provides methods to search geotags 
+ * If a search term is given, the results are further filtered to contain
+ * the term as a part of their names or hashtags.
+ * To this end, "GeoTagStore" provides methods to search geotags
  * by radius and keyword.
  */
 
 // TODO: ... your code here ...
-router.post('/discovery', (req, res) => {
-  res.send('hello');
+router.post("/discovery", (req, res) => {
+  let search = req.body.search;
+  console.log("search");
+  let nearbyGeoTags = globalGeoTagStore.searchNerbyGeotags(search);
 });
 
 module.exports = router;

@@ -166,14 +166,12 @@
         <div class="discovery__wrapper">
           <div class="discovery__taglist col-3">
             <ul class="discovery__results" id="discoveryResults">
-              <li class="customHeader link">
+              <li class="customHeader ">
                 <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
                     <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
                 <% }); %>
               </li>
-              <li class="customHeader link"><% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-                <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-            <% }); %></li>
+       
             </ul>
           </div>
           <div class="discovery__map col-7">

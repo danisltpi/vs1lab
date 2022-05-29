@@ -29,9 +29,10 @@ class InMemoryGeoTagStore {
 
     // TODO: ... your code here ...
     #geoTagArray = [];
-    proximity_radius = 0.1;
+    // proximity_radius = 0.1;
 
-    InMemoryGeoTagStore() {
+
+    constructor() {
         this.addExamples();
     }
 
@@ -54,7 +55,7 @@ class InMemoryGeoTagStore {
             let difflong = tag.longitude - location.longitude;
             let difflat = tag.latitude - location.latitude;
             let distance = Math.sqrt((difflong*difflong) + (difflat*difflat));
-            if (distance <= proximity_radius)
+            if (distance <= 0.1)
                 ret.push(tag);
         });
         return ret;
@@ -73,7 +74,7 @@ class InMemoryGeoTagStore {
     }
 
     addExamples() {
-        GeoTagExamples.forEach( (tag) => {
+        GeoTagExamples.tagList.forEach( (tag) => {
             this.addGeoTag(new GeoTag(tag[1], tag[2], tag[0], tag[3]))
         })
     }
