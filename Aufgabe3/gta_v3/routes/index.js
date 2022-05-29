@@ -11,6 +11,7 @@
  */
 
 const express = require('express');
+const app = require('../app')
 const router = express.Router();
 
 /**
@@ -46,6 +47,7 @@ const GeoTagExamples = require('../models/geotag-examples');
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
   res.render('index', { taglist: [], currentLatitude: null, currentLongitude: null });
+  console.log("omegalul")
 });
 
 /**
@@ -66,15 +68,18 @@ router.get('/', (req, res) => {
 // TODO: ... your code here ...
 router.post('/tagging', (req, res) => {
   let geoTagStore = new GeoTagStore();
-  geoTagStore.addExamples();
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
   let name = req.body.name;
   let hashtag = req.body.hashtag;
-  res.send('hello');
 
   let geoTag = new GeoTag(latitude, longitude, hashtag, name);
-  let nearbyGeoTags = geoTagStore.searchNearbyGeoTags(latitude, latitude, 200);
+  console.log(geoTag);
+  let nearbyGeoTags = geoTagStore.getNearbyGeoTags(geoTag);
+  nearbyGeoTags.push(geoTag);
+  geoTagStore.addGeoTag(geoTag);
+
+  res.render("index", {taglist: nearbyGeoTags, currentLatitude: latitude, currentLongitude: longitude, mapTaglist: JSON.stringify(nearbyGeoTags)});
   console.log(nearbyGeoTags);
 
   //let nearbyGeoTags = GeoTagStore.searchNearbyGeoTags(latitude, latitude, 200);

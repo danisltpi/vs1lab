@@ -31,6 +31,10 @@ class InMemoryGeoTagStore {
     #geoTagArray = [];
     proximity_radius = 0.1;
 
+    InMemoryGeoTagStore() {
+        this.addExamples();
+    }
+
     addGeoTag(geoTag) {
         this.#geoTagArray.push(geoTag)
     }
@@ -68,6 +72,11 @@ class InMemoryGeoTagStore {
         return ret;
     }
 
+    addExamples() {
+        GeoTagExamples.forEach( (tag) => {
+            this.addGeoTag(new GeoTag(tag[1], tag[2], tag[0], tag[3]))
+        })
+    }
     // der code funzt net
 /*     getNearbyGeoTags(latitude, longitude, radius) {
         let returnArray = [];
@@ -87,12 +96,6 @@ class InMemoryGeoTagStore {
         })
     }
 
-    addExamples() {
-        let tagList = GeoTagExamples.tagList;
-        for (let i = 0; i < (GeoTagExamples.tagList).length; i++) {
-                this.addGeoTag(new GeoTag(tagList[i][0], tagList[i][1], tagList[i][2], tagList[i][3]));
-            }
-    }
     
 /*     haversineFormulaForDistanceBetweenPoints(lat1, long1, lat2, long2) {
         const EarthRadius = 6371;
