@@ -72,10 +72,10 @@ router.get("/", (req, res) => {
 
 // TODO: ... your code here ...
 router.post("/tagging", (req, res) => {
-  console.log(req.body)
+
   let latitude = req.body.latitude;
   let longitude = req.body.Longitude;
- 
+
   let name = req.body.name;
   let hashtag = req.body.hashtag;
 
@@ -91,7 +91,6 @@ router.post("/tagging", (req, res) => {
     currentLongitude: longitude,
     mapTaglist: JSON.stringify(nearbyGeoTags),
   });
-  
 });
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -112,8 +111,15 @@ router.post("/tagging", (req, res) => {
 // TODO: ... your code here ...
 router.post("/discovery", (req, res) => {
   let search = req.body.search;
-  console.log("search");
-  let nearbyGeoTags = globalGeoTagStore.searchNerbyGeotags(search);
+  console.log(req.body);
+  let nearbyGeoTags = globalGeoTagStore.searchNearbyGeoTags(search);
+  
+  res.render("index", {
+    taglist: nearbyGeoTags,
+    currentLatitude: req.body.latitude,
+    currentLongitude: req.body.Longitude,
+    mapTaglist: JSON.stringify(nearbyGeoTags),
+  });
 });
 
 module.exports = router;
