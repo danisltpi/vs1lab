@@ -179,11 +179,7 @@
               src="./images/mapview.jpg"
               alt="a map with locations"
               id="mapView"
-            <% if(taglist !== undefined) { %>
-              data-tags= <%= JSON.stringify(taglist) %>
-          <% } else { %>
-              data-tags= <%= "" %>
-          <% } %>
+              data-tags="<%=mapTaglist%>"
           />
           </div>
         </div>

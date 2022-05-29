@@ -38,6 +38,10 @@ class InMemoryGeoTagStore {
     this.#geoTagArray.push(geoTag);
   }
 
+  get geoTags() {
+      return this.#geoTagArray;
+  }
+
   removeGeoTag(name) {
     for (let i = 0; i < this.#geoTagArray.length; i++) {
       if (this.#geoTagArray[i].name === name) {

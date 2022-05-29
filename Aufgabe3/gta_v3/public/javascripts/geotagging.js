@@ -40,7 +40,10 @@ function updateLocation() {
 			return;
 		}
 
-		let maplink = manager.getMapUrl(helper.latitude, helper.longitude);
+        let taglist_json = mapElem.getAttribute("data-tags");
+        let taglist_obj = JSON.parse(taglist_json);
+        
+        let maplink = manager.getMapUrl(helper.latitude, helper.longitude, taglist_obj);
 		if (!maplink) {
 			console.log("failed to retrieve location image");
 			return;

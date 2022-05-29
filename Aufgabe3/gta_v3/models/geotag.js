@@ -23,6 +23,14 @@ class GeoTag {
         this.hashtag = hashtag;
     }
 
+    toJSON() {
+        return {
+            name: this.name,
+            location: { latitude: this.latitude, longitude: this.longitude },
+            hashtag: this.hashtag
+        }
+    }
+
 }
 
 module.exports = GeoTag;

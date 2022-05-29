@@ -35,6 +35,7 @@ const GeoTagStore = require("../models/geotag-store");
 const GeoTagExamples = require("../models/geotag-examples");
 
 var globalGeoTagStore = new GeoTagStore();
+globalGeoTagStore.addExamples();
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -51,8 +52,8 @@ router.get("/", (req, res) => {
     taglist: [],
     currentLatitude: null,
     currentLongitude: null,
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
   });
-  console.log("omegalul");
 });
 
 /**
@@ -89,7 +90,7 @@ router.post("/tagging", (req, res) => {
     taglist: nearbyGeoTags,
     currentLatitude: latitude,
     currentLongitude: longitude,
-    mapTaglist: JSON.stringify(nearbyGeoTags),
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
   });
 });
 /**
@@ -118,7 +119,7 @@ router.post("/discovery", (req, res) => {
     taglist: nearbyGeoTags,
     currentLatitude: req.body.latitude,
     currentLongitude: req.body.Longitude,
-    mapTaglist: JSON.stringify(nearbyGeoTags),
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
   });
 });
 

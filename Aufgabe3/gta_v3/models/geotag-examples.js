@@ -5,6 +5,9 @@
  * Complete all TODOs in the code documentation.
  */
 
+const InMemoryGeoTagStore = require("./geotag-store");
+
+const GeoTag = require("./geotag");
 /**
  * A class representing example geoTags at HKA
  * 
