@@ -52,7 +52,7 @@ router.get("/", (req, res) => {
     taglist: [],
     currentLatitude: null,
     currentLongitude: null,
-    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
   });
 });
 
@@ -73,24 +73,20 @@ router.get("/", (req, res) => {
 
 // TODO: ... your code here ...
 router.post("/tagging", (req, res) => {
-
-  let latitude = req.body.latitude;
-  let longitude = req.body.Longitude;
-
   let name = req.body.name;
   let hashtag = req.body.hashtag;
 
-  let geoTag = new GeoTag(latitude, longitude, hashtag, name);
-  console.log(geoTag);
+  let geoTag = new GeoTag(req.body.latitude, req.body.Longitude, hashtag, name);
+
   let nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(geoTag);
   nearbyGeoTags.push(geoTag);
   globalGeoTagStore.addGeoTag(geoTag);
 
   res.render("index", {
     taglist: nearbyGeoTags,
-    currentLatitude: latitude,
-    currentLongitude: longitude,
-    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
+    currentLatitude: req.body.Latitude,
+    currentLongitude: req.body.Longitude,
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
   });
 });
 /**
@@ -114,12 +110,12 @@ router.post("/discovery", (req, res) => {
   let search = req.body.search;
   console.log(req.body);
   let nearbyGeoTags = globalGeoTagStore.searchNearbyGeoTags(search);
-  
+
   res.render("index", {
     taglist: nearbyGeoTags,
-    currentLatitude: req.body.latitude,
+    currentLatitude: req.body.Latitude,
     currentLongitude: req.body.Longitude,
-    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags)
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
   });
 });
 
