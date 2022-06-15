@@ -10,8 +10,10 @@
  * Define module dependencies.
  */
 
-const express = require('express');
-const router = express.Router();
+
+ const express = require("express");
+ const app = require("../app");
+ const router = express.Router();
 
 /**
  * The module "geotag" exports a class GeoTagStore. 
@@ -28,7 +30,12 @@ const GeoTag = require('../models/geotag');
 const GeoTagStore = require('../models/geotag-store');
 
 // App routes (A3)
+const GeoTagStore = require("../models/geotag-store");
 
+const GeoTagExamples = require("../models/geotag-examples");
+
+var globalGeoTagStore = new GeoTagStore();
+globalGeoTagStore.addExamples();
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -40,6 +47,47 @@ const GeoTagStore = require('../models/geotag-store');
 
 router.get('/', (req, res) => {
   res.render('index', { taglist: [] })
+});
+
+// / route
+router.get("/", (req, res) => {
+  res.render("index", {
+    taglist: [],
+    currentLatitude: null,
+    currentLongitude: null,
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
+  });
+});
+// tagging route
+router.post("/tagging", (req, res) => {
+  let name = req.body.name;
+  let hashtag = req.body.hashtag;
+
+  let geoTag = new GeoTag(req.body.latitude, req.body.Longitude, hashtag, name);
+
+  let nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(geoTag);
+  nearbyGeoTags.push(geoTag);
+  globalGeoTagStore.addGeoTag(geoTag);
+
+  res.render("index", {
+    taglist: nearbyGeoTags,
+    currentLatitude: req.body.Latitude,
+    currentLongitude: req.body.Longitude,
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
+  });
+});
+// discovery route
+router.post("/discovery", (req, res) => {
+  let search = req.body.search;
+  console.log(req.body);
+  let nearbyGeoTags = globalGeoTagStore.searchNearbyGeoTags(search);
+
+  res.render("index", {
+    taglist: nearbyGeoTags,
+    currentLatitude: req.body.Latitude,
+    currentLongitude: req.body.Longitude,
+    mapTaglist: JSON.stringify(globalGeoTagStore.geoTags),
+  });
 });
 
 // API routes (A4)
@@ -56,7 +104,7 @@ router.get('/', (req, res) => {
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 
-// TODO: ... your code here ...
+
 
 
 /**
