@@ -33,7 +33,9 @@ class InMemoryGeoTagStore {
   constructor() {
     this.addExamples();
   }
-
+  changeGeoTag(geoTag,geoTagID){
+    
+  }
   addGeoTag(geoTag) {
     this.#geoTagArray.push(geoTag);
   }
@@ -54,14 +56,17 @@ class InMemoryGeoTagStore {
   getNearbyGeoTags(location) {
     let ret = [];
     this.#geoTagArray.forEach((tag) => {
-      let difflong = tag.longitude - location.longitude;
-      let difflat = tag.latitude - location.latitude;
-      let distance = Math.sqrt(difflong * difflong + difflat * difflat);
+      let distance=this.distance(tag,location);
       if (distance <= 0.1) ret.push(tag);
     });
     return ret;
   }
 
+  distance(tag, location){
+    let difflong = tag.longitude - location.longitude;
+    let difflat = tag.latitude - location.latitude;
+    return Math.sqrt(difflong * difflong + difflat * difflat);
+  }
   searchNearbyGeoTags(name) {
     console.log(name);
     let ret = [];
