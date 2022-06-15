@@ -27,10 +27,10 @@ const GeoTag = require('../models/geotag');
  * It provides an in-memory store for geotag objects.
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTagStore = require('../models/geotag-store');
+
 
 // App routes (A3)
-const GeoTagStore = require("../models/geotag-store");
+const GeoTagStore = require('../models/geotag-store');
 
 const GeoTagExamples = require("../models/geotag-examples");
 
