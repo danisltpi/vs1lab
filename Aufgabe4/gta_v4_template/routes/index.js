@@ -132,6 +132,7 @@ router.post("/discovery", (req, res) => {
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
 router.get("api/geotags", (req, res) => {
+  console.log("TEst")
   let discoveryQuery = req.query.search;
   let latitudeQuery = req.query.latitude;
   let longitudeQuery = req.query.Longitude;
@@ -175,15 +176,15 @@ router.get("api/geotags", (req, res) => {
 
 router.post("/api/geotags", (req, res) => {
   let name = req.body.name;
-  let latitude = parseFloat(req.body.location.latitude);
-  let longitude = parseFloat(req.body.location.Longitude);
+  let latitude = parseFloat(req.body.latitude);
+  let longitude = parseFloat(req.body.longitude);
   let hashtag = req.body.hashtag;
 
   let geoTagObject = new GeoTag(name, latitude, longitude, hashtag);
   globalGeoTagStore.addGeoTag(geoTagObject);
   res.append("URL", "api/geotags/" + name);
 
-  res.status(201).json(JSON.stringify(tagStore.geoTags));
+  res.status(201).json(JSON.stringify(globalGeoTagStore.geoTags));
 });
 
 /**
