@@ -196,11 +196,11 @@ router.post("/api/geotags", (req, res) => {
  * The requested tag is rendered as JSON in the response.
  */
 
- router.get('/api/geotags/:id', (req, res) => {
+router.get("/api/geotags/:id", (req, res) => {
   //id is specified via name of specific GeoTag
   let geoTagID = req.params.id;
 
-  let foundGeoTag = globalGeoTagStore.searchNearbyGeoTags(geoTagID);
+  let foundGeoTag = globalGeoTagStore.geoTagById(geoTagID);
 
   res.status(200).json(JSON.stringify(foundGeoTag));
 });
@@ -218,8 +218,12 @@ router.post("/api/geotags", (req, res) => {
  * Changes the tag with the corresponding ID to the sent value.
  * The updated resource is rendered as JSON in the response.
  */
-
-
+router.put("/api/geotags/:id", (req, res) => {
+  let geoTagID = req.params.id;
+  let geoTag = req.body;
+  globalGeoTagStore.changeGeoTag(geoTag, geoTagID);
+  res.status(202).json(JSON.stringify(geoTag));
+});
 
 /**
  * Route '/api/geotags/:id' for HTTP 'DELETE' requests.
@@ -232,6 +236,10 @@ router.post("/api/geotags", (req, res) => {
  * The deleted resource is rendered as JSON in the response.
  */
 
-// TODO: ... your code here ...
+router.delete("/api/geotags/:id", (req, res) => {
+  let geoTagID = req.params.id;
+  let removedGeoTag = globalGeoTagStore.removeGeoTag(geoTagID);
+  res.status(202).json(JSON.stringify(removedGeoTag));
+});
 
 module.exports = router;

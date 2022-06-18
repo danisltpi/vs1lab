@@ -28,20 +28,17 @@ const GeoTag = require("./geotag");
 class InMemoryGeoTagStore {
   // TODO: ... your code here ...
   #geoTagArray = [];
-  // proximity_radius = 0.1;
 
   constructor() {
     this.addExamples();
   }
-  changeGeoTag(geoTag,geoTagID){
-    
-  }
+
   addGeoTag(geoTag) {
     this.#geoTagArray.push(geoTag);
   }
 
   get geoTags() {
-      return this.#geoTagArray;
+    return this.#geoTagArray;
   }
 
   removeGeoTag(name) {
@@ -53,16 +50,33 @@ class InMemoryGeoTagStore {
     }
   }
 
+  geoTagById(id) {
+    for (let i = 0; i < this.#geoTagArray.length; i++) {
+      if (this.#geoTagArray[i].name === id) {
+        return this.#geoTagArray[i];
+      }
+    }
+    return null;
+  }
+
+  changeGeoTag(geoTag, id) {
+    let found = this.geoTagById(id);
+    if (!!found) {
+      this.removeGeoTag(found.name);
+      this.#geoTagArray.unshift(geoTag);
+    }
+  }
+
   getNearbyGeoTags(location) {
     let ret = [];
     this.#geoTagArray.forEach((tag) => {
-      let distance=this.distance(tag,location);
+      let distance = this.distance(tag, location);
       if (distance <= 0.1) ret.push(tag);
     });
     return ret;
   }
 
-  distance(tag, location){
+  distance(tag, location) {
     let difflong = tag.longitude - location.longitude;
     let difflat = tag.latitude - location.latitude;
     return Math.sqrt(difflong * difflong + difflat * difflat);
