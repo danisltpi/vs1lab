@@ -131,35 +131,37 @@ router.post("/discovery", (req, res) => {
  * If 'searchterm' is present, it will be filtered by search term.
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
-router.get("api/geotags", (req, res) => {
-  console.log("TEst")
-  let discoveryQuery = req.query.search;
+ router.get('/api/geotags', (req, res) => {
+  let discoveryQuery = req.query.searchterm;
   let latitudeQuery = req.query.latitude;
-  let longitudeQuery = req.query.Longitude;
+  let longitudeQuery = req.query.longitude;
+  /**
+   * location contains latitude and longitude, which is sufficient for a use in geotag-store.getNearbyGeoTags()
+   * @type {{latitude: (*|Document.latitude|number), longitude: (*|Document.longitude|number)}}
+   */
   let location = {
-    latitude: latitudeQuery,
-    longitude: longitudeQuery,
-  };
-  let filteredArray = [];
-  let distance;
+      latitude: latitudeQuery,
+      longitude: longitudeQuery
+  }
+  let filterArray = [];
   let nearbyGeoTags = globalGeoTagStore.geoTags;
 
-  if (!!discoveryQuery && !!latitudeQuery && !!longitudeQuery) {
-    nearbyGeoTags = [];
-    filteredArray = globalGeoTagStore.searchNearbyGeoTags(discoveryQuery);
-    for (let i = 0; i < filteredArray.length; i++) {
-      distance = globalGeoTagStore.distance(filteredArray[i], location);
-      if (distance <= 0.5) {
-        nearbyGeoTags.push(filteredArray[i]);
-      }
-    }
+  if (!!discoveryQuery && (!!latitudeQuery && !!longitudeQuery)) {
+      nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
+      
+      nearbyGeoTags.forEach((tag)=> {
+          if (tag.name.includes(discoveryQuery) || tag.hashtag.includes(discoveryQuery)) {
+              filterArray.push(tag);
+          }
+      });
+      nearbyGeoTags = filterArray;
+
   } else if (!!discoveryQuery) {
-    nearbyGeoTags = globalGeoTagStore.searchNearbyGeoTags(discoveryQuery);
-  }
-  //
-  else if (!!latitudeQuery && !!longitudeQuery) {
-    nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
-  }
+      nearbyGeoTags = globalGeoTagStore.geoTagsByTerm(discoveryQuery);
+
+  } else if (!!latitudeQuery && !!longitudeQuery) {
+      nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
+  } 
   res.status(200).json(JSON.stringify(nearbyGeoTags));
 });
 

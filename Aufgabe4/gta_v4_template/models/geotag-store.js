@@ -81,6 +81,19 @@ class InMemoryGeoTagStore {
     let difflat = tag.latitude - location.latitude;
     return Math.sqrt(difflong * difflong + difflat * difflat);
   }
+
+  geoTagsByTerm(searchterm) {
+    let ret = [];
+    for (let i = 0; i < this.#geoTagArray.length; i++) {
+      if (
+        this.#geoTagArray[i].name.includes(searchterm) ||
+        this.#geoTagArray[i].hashtag.includes(searchterm)
+      ) {
+        ret.push(this.#geoTagArray[i]);
+      }
+    }
+    return ret;
+  }
   searchNearbyGeoTags(name) {
     console.log(name);
     let ret = [];
