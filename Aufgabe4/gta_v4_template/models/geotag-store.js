@@ -54,13 +54,13 @@ class InMemoryGeoTagStore {
     let ret = null;
 
     this.#geoTagArray.find((tag) => {
-        if (tag.name === id) {
-            ret = tag;
-        }
+      if (tag.name === id) {
+        ret = tag;
+      }
     });
-    
+
     return ret;
-}
+  }
 
   changeGeoTag(geoTag, id) {
     let found = this.geoTagById(id);
