@@ -83,20 +83,21 @@ function updateMap(geotags) {
 
 function updateList(tags) {
   let taglist = JSON.parse(tags);
+
   if (taglist !== undefined) {
     let list = document.getElementById("discoveryResults");
     list.innerHTML = "";
-    taglist.forEach(function (tag) {
+    taglist.forEach((tag) => {
+     
       let element = document.createElement("li");
       element.innerHTML =
-        tag.name + "(" + tag.latitude + "," + tag.longitude + ")" + tag.hashtag;
+        tag.name + "(" + tag.location.latitude + "," + tag.location.longitude + ")" + tag.hashtag;
       list.appendChild(element);
     });
   }
 }
 
 async function postAdd(geotag) {
-  console.log(geotag);
   let response = await fetch("http://localhost:3000/api/geotags", {
     //Post mit HTTP
     method: "POST",

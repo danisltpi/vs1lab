@@ -16,12 +16,12 @@ Content-Type: application/json
 ###
 
 //GET one GeoTag
-GET http://localhost:3000/api/geotags/Vallah
+GET http://localhost:3000/api/geotags/Castle
 Accept: application/json
 ###
 
 //GET test 
-GET http://localhost:3000/api/geotags/test
+GET http://localhost:3000/api/geotags/Vallah
 
 ###
 //PUT change one GeoTag with name test to Castle2. test is deleted and Castle 2 inserted at the beginning

@@ -30,7 +30,7 @@ class InMemoryGeoTagStore {
   #geoTagArray = [];
 
   constructor() {
-    this.addExamples();
+   this.addExamples();
   }
 
   addGeoTag(geoTag) {
