@@ -8,15 +8,15 @@ POST http://localhost:3000/api/geotags
 Content-Type: application/json
 
 {
-  "name":"test",  
+  "name":"Vallah",  
   "latitude":"49.013790",
   "longitude":"8.404435",
-  "hashtag":"#test"
+  "hashtag":"#Vallah"
 }
 ###
 
 //GET one GeoTag
-GET http://localhost:3000/api/geotags/test
+GET http://localhost:3000/api/geotags/Vallah
 Accept: application/json
 ###
 

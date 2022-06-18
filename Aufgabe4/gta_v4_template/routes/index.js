@@ -131,37 +131,36 @@ router.post("/discovery", (req, res) => {
  * If 'searchterm' is present, it will be filtered by search term.
  * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
  */
- router.get('/api/geotags', (req, res) => {
+router.get("/api/geotags", (req, res) => {
+  console.log("GET !!!!!",req.body)
   let discoveryQuery = req.query.searchterm;
   let latitudeQuery = req.query.latitude;
   let longitudeQuery = req.query.longitude;
-  /**
-   * location contains latitude and longitude, which is sufficient for a use in geotag-store.getNearbyGeoTags()
-   * @type {{latitude: (*|Document.latitude|number), longitude: (*|Document.longitude|number)}}
-   */
+
   let location = {
-      latitude: latitudeQuery,
-      longitude: longitudeQuery
-  }
+    latitude: latitudeQuery,
+    longitude: longitudeQuery,
+  };
   let filterArray = [];
   let nearbyGeoTags = globalGeoTagStore.geoTags;
 
-  if (!!discoveryQuery && (!!latitudeQuery && !!longitudeQuery)) {
-      nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
-      
-      nearbyGeoTags.forEach((tag)=> {
-          if (tag.name.includes(discoveryQuery) || tag.hashtag.includes(discoveryQuery)) {
-              filterArray.push(tag);
-          }
-      });
-      nearbyGeoTags = filterArray;
+  if (!!discoveryQuery && !!latitudeQuery && !!longitudeQuery) {
+    nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
 
+    nearbyGeoTags.forEach((tag) => {
+      if (
+        tag.name.includes(discoveryQuery) ||
+        tag.hashtag.includes(discoveryQuery)
+      ) {
+        filterArray.push(tag);
+      }
+    });
+    nearbyGeoTags = filterArray;
   } else if (!!discoveryQuery) {
-      nearbyGeoTags = globalGeoTagStore.geoTagsByTerm(discoveryQuery);
-
+    nearbyGeoTags = globalGeoTagStore.geoTagsByTerm(discoveryQuery);
   } else if (!!latitudeQuery && !!longitudeQuery) {
-      nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
-  } 
+    nearbyGeoTags = globalGeoTagStore.getNearbyGeoTags(location);
+  }
   res.status(200).json(JSON.stringify(nearbyGeoTags));
 });
 
@@ -177,16 +176,16 @@ router.post("/discovery", (req, res) => {
  */
 
 router.post("/api/geotags", (req, res) => {
-  let name = req.body.name;
-  let latitude = parseFloat(req.body.latitude);
-  let longitude = parseFloat(req.body.longitude);
-  let hashtag = req.body.hashtag;
-
-  let geoTagObject = new GeoTag(name, latitude, longitude, hashtag);
+  console.log("POST !!!!!!",req.body);
+   let geoTagObject = new GeoTag(
+    req.body.name,
+    req.body.latitude,
+    req.body.longitude,
+    req.body.hashtag
+  );
   globalGeoTagStore.addGeoTag(geoTagObject);
-  res.append("URL", "api/geotags/" + name);
-
-  res.status(201).json(JSON.stringify(globalGeoTagStore.geoTags));
+  res.append("URL", "api/geotags/" + req.body.name);
+  res.status(200).json(JSON.stringify(globalGeoTagStore.geoTags));
 });
 
 /**
@@ -200,11 +199,9 @@ router.post("/api/geotags", (req, res) => {
  */
 
 router.get("/api/geotags/:id", (req, res) => {
-  //id is specified via name of specific GeoTag
-  let geoTagID = req.params.id;
-
-  let foundGeoTag = globalGeoTagStore.geoTagById(geoTagID);
-
+  console.log("ROUTE GET /api/geotags/:id");
+  let id = req.params.id;
+  let foundGeoTag = globalGeoTagStore.geoTagById(id);
   res.status(200).json(JSON.stringify(foundGeoTag));
 });
 
