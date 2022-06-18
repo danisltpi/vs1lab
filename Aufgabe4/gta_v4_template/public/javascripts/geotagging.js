@@ -88,10 +88,16 @@ function updateList(tags) {
     let list = document.getElementById("discoveryResults");
     list.innerHTML = "";
     taglist.forEach((tag) => {
-     
       let element = document.createElement("li");
+      element.classList.add("customHeader","link");
       element.innerHTML =
-        tag.name + "(" + tag.location.latitude + "," + tag.location.longitude + ")" + tag.hashtag;
+        tag.name +
+        "\n(" +
+        tag.location.latitude +
+        "," +
+        tag.location.longitude +
+        ")\n" +
+        tag.hashtag;
       list.appendChild(element);
     });
   }
