@@ -48,7 +48,8 @@ function updateLocation() {
     let maplink = manager.getMapUrl(
       helper.latitude,
       helper.longitude,
-      taglist_obj
+      taglist_obj,
+	  16
     );
     if (!maplink) {
       console.log("failed to retrieve location image");
@@ -75,7 +76,7 @@ function updateMap(geotags) {
   let long = parseFloat(
     document.getElementById("Longitude").getAttribute("value")
   );
-  let mapUrl = mapManager.getMapUrl(lat, long, JSON.parse(geotags));
+  let mapUrl = mapManager.getMapUrl(lat, long, JSON.parse(geotags),16);
   document.getElementById("mapView").setAttribute("src", mapUrl);
 
   return geotags;
@@ -107,7 +108,7 @@ async function postAdd(geotag) {
   let response = await fetch("http://localhost:3000/api/geotags", {
     //Post mit HTTP
     method: "POST",
-    headers: { "Content-Type": "application/json" }, //MimeType
+    headers: { "Content-Type": "application/json" }, 
     body: JSON.stringify(geotag),
   });
   return await response.json();
@@ -124,7 +125,7 @@ async function getTagList(searchTerm) {
 document.getElementById("tag-form").addEventListener(
   "submit",
   (evt) => {
-    evt.preventDefault(); //standardabsenden der formulare verhindert
+    evt.preventDefault(); 
 
     let geotag = {
       name: document.getElementById("name").value,
@@ -144,8 +145,7 @@ document.getElementById("tag-form").addEventListener(
 document
   .getElementById("discoveryFilterForm")
   .addEventListener("submit", (evt) => {
-    evt.preventDefault(); //standardabsenden der formulare verhindert
-
+    evt.preventDefault(); 
     let searchTerm = document.getElementById("search").value;
     getTagList(searchTerm)
       .then(updateMap)

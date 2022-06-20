@@ -187,6 +187,7 @@ button {
   display: flex;
   padding: 12px 0 6px 0;
   font-size: 1.5em;
+  width: fit-content;
 }
 
 input {
@@ -211,7 +212,8 @@ input {
 }
 
 #mapView {
-  margin: 1.5em;
+  margin-left: 10em;
+  margin-top:1.5em;
   width: 90%;
 }
 
