@@ -155,7 +155,12 @@ fieldset {
   border-radius: 10px;
   padding: 2em;
 }
-
+.wrapper-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: fit-content;
+}
 .discovery__search {
   display: flex;
   flex-direction: column;
@@ -166,14 +171,22 @@ fieldset {
   max-width: 100%;
   width: auto;
 }
+
 button {
   margin: 1em 0 1em 0;
   width: 75%;
-
   height: 42px;
   border-radius: 4px;
 }
 
+.pagination-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.pagination-buttons button {
+  margin-left: 1.5em;
+  width: 5em;
+}
 #tag-form {
   display: flex;
   flex-direction: column;
@@ -212,8 +225,8 @@ input {
 }
 
 #mapView {
-  margin-left: 10em;
-  margin-top:1.5em;
+  margin-left: 1em;
+  margin-top: 1.5em;
   width: 90%;
 }
 
@@ -241,7 +254,6 @@ input {
   margin: 1em;
   border-radius: 10px;
 }
-
 
 .col-1 {
   width: calc(8.33% - 1rem);

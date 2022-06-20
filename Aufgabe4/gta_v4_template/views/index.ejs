@@ -164,15 +164,21 @@
         <!-- ############### VS1Lab 1a Form 2 End -->
 
         <div class="discovery__wrapper">
-          <div class="discovery__taglist col-3">
-            <ul class="discovery__results" id="discoveryResults">
-          
-                <!-- <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-                    <li class="customHeader link" ><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-                <% }); %> -->
-      
-       
-            </ul>
+          <div class="wrapper-wrapper">
+
+            <div class="discovery__taglist col-3">
+              <ul class="discovery__results" id="discoveryResults">
+            
+                 
+        
+         
+              </ul>
+            </div>
+            <div class="pagination-buttons">
+              <button id="previous">Previous</button>
+              <button id="pagenumber">1</button>
+              <button id="next">Next</button>
+            </div>
           </div>
           <div class="discovery__map col-7">
             <img
@@ -182,6 +188,8 @@
               data-tags="<%=mapTaglist%>"
           />
           </div>
+          
+         
         </div>
       </section>
     </main>

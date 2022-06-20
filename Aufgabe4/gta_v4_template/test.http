@@ -8,7 +8,7 @@ POST http://localhost:3000/api/geotags
 Content-Type: application/json
 
 {
-  "name":"Vallah",  
+  "name":"tztzsatzsatsa",  
   "latitude":"49.013790",
   "longitude":"8.404435",
   "hashtag":"#Vallah"
@@ -16,20 +16,20 @@ Content-Type: application/json
 ###
 
 //GET one GeoTag
-GET http://localhost:3000/api/geotags/Castle
+GET http://localhost:3000/api/geotags/89
 Accept: application/json
 ###
 
 //GET test 
-GET http://localhost:3000/api/geotags/Vallah
+GET http://localhost:3000/api/geotags/99
 
 ###
 //PUT change one GeoTag with name test to Castle2. test is deleted and Castle 2 inserted at the beginning
-PUT http://localhost:3000/api/geotags/test
+PUT http://localhost:3000/api/geotags/31
 Content-Type: application/json
 
 {
-  "name":"Castle2",
+  "name":"ggg",
   "latitude":"49.013790",
   "longitude":"8.404435",
   "hashtag":"#sight"
@@ -37,7 +37,8 @@ Content-Type: application/json
 ###
 
 //DELETE one GeoTag
-DELETE http://localhost:3000/api/geotags/Castle2
+DELETE http://localhost:3000/api/geotags/89
+
 ###
 
 //GET all GeoTags filtered with searchterm

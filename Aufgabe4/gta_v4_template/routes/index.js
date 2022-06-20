@@ -182,8 +182,8 @@ router.post("/api/geotags", (req, res) => {
     req.body.name
   );
   globalGeoTagStore.addGeoTag(geoTagObject);
-  res.append("URL", "api/geotags/" + req.body.name);
-  res.status(200).json(JSON.stringify(globalGeoTagStore.geoTags));
+  res.append("Location", "http://localhost:3000/api/geotags/" + geoTagObject.id);
+  res.status(201).json(JSON.stringify(geoTagObject));
 });
 
 /**
@@ -218,7 +218,9 @@ router.get("/api/geotags/:id", (req, res) => {
  * The updated resource is rendered as JSON in the response.
  */
 router.put("/api/geotags/:id", (req, res) => {
+  console.log(req.params)
   let geoTagID = req.params.id;
+  console.log(req.body)
   let geoTag = req.body;
   globalGeoTagStore.changeGeoTag(geoTag, geoTagID);
   res.status(202).json(JSON.stringify(geoTag));

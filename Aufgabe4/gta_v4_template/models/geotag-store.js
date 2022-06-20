@@ -30,7 +30,7 @@ class InMemoryGeoTagStore {
   #geoTagArray = [];
 
   constructor() {
-   this.addExamples();
+    this.addExamples();
   }
 
   addGeoTag(geoTag) {
@@ -41,9 +41,9 @@ class InMemoryGeoTagStore {
     return this.#geoTagArray;
   }
 
-  removeGeoTag(name) {
+  removeGeoTag(id) {
     for (let i = 0; i < this.#geoTagArray.length; i++) {
-      if (this.#geoTagArray[i].name === name) {
+      if (this.#geoTagArray[i].id == id) {
         this.#geoTagArray.splice(i, 1);
         break;
       }
@@ -52,21 +52,25 @@ class InMemoryGeoTagStore {
 
   geoTagById(id) {
     let ret = null;
-
+    console.log(id)
     this.#geoTagArray.find((tag) => {
-      if (tag.name === id) {
+      console.log(tag)
+      if (tag.id == id) {
         ret = tag;
       }
     });
-
+   
     return ret;
   }
 
   changeGeoTag(geoTag, id) {
     let found = this.geoTagById(id);
+    console.log("found:",found)
     if (!!found) {
-      this.removeGeoTag(found.name);
-      this.#geoTagArray.unshift(geoTag);
+      found.latitude=geoTag.latitude
+      found.longitude=geoTag.longitude
+      found.name=geoTag.name
+      found.hashtag=geoTag.hashtag
     }
   }
 

@@ -55,7 +55,7 @@ function updateLocation() {
       console.log("failed to retrieve location image");
       return;
     }
-
+	
     mapElem.setAttribute("src", maplink);
   }
 
@@ -154,5 +154,6 @@ document
   });
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
+	getTagList("").then(updateList)
   updateLocation();
 });
